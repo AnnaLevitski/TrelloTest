@@ -8,8 +8,32 @@ public class HelperUser extends HelperBase{
         super(wd);
     }
 
-    By buttonLogin = By.xpath("//*[]");
+    By buttonLogin = By.xpath("//a[@data-uuid='MJFtCCgVhXrVl7v9HA7EH_login']");
+    By inputLogin = By.cssSelector("#username");
+    By inputPassword = By.cssSelector("#password");
+    By buttonContinue = By.cssSelector("#login-submit");
+    By buttonLoginSubmit = By.cssSelector("#login-submit");
+    By buttonHederMemberMenu = By.xpath("//div[@data-testid='header-member-menu-avatar']");
+
+
+
     public void clickButtonLogin(){
         clickBase(buttonLogin);
     }
+
+    public void login(String mail, String password) {
+        clickBase(buttonLogin);
+        typeBase(inputLogin, mail);
+
+        clickBase(buttonContinue);
+        typeBase(inputPassword, password);
+
+        clickBase(buttonLoginSubmit);
+    }
+    public boolean isLogged(){
+        return isElementPresent(buttonHederMemberMenu);
+    }
+
+
+
 }
